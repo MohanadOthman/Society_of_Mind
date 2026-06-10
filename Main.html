@@ -3,52 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مجتمع العقل - اللوحة المعمارية</title>
+    <title>مجتمع العقل - اللوحة المعمارية الاحترافية</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Fira+Code:wght@400;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     
-    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-    <script>mermaid.initialize({ startOnLoad: false, theme: 'neutral' });</script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({ 
+            startOnLoad: false, 
+            theme: 'neutral',
+            securityLevel: 'loose'
+        });
+    </script>
 
     <style>
         :root {
-            --primary: #1e3c72;
-            --primary-light: #eef4fa;
-            --sidebar-bg: #2c3e50;
-            --text-dark: #2c3e50;
-            --text-muted: #7f8c8d;
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --sidebar-bg: #0f172a;
+            --sidebar-hover: #1e293b;
+            --primary: #1e40af;
+            --primary-light: #eff6ff;
+            --border-color: #e2e8f0;
+            --text-main: #334155;
+            --text-muted: #64748b;
             --code-bg: #1e1e1e;
         }
+
+        * { box-sizing: border-box; }
 
         body {
             font-family: 'Cairo', sans-serif;
             margin: 0;
             padding: 0;
-            display: flex;
+            display: grid;
+            grid-template-columns: 320px 1fr;
             height: 100vh;
-            background-color: #f4f7f6;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            overflow: hidden;
         }
 
-        /* شريط التنقل الجانبي */
+        /* 📱 شريط جانبي متجاوب وقوي */
         .sidebar {
-            width: 300px;
             background-color: var(--sidebar-bg);
-            color: white;
+            color: #f8fafc;
             display: flex;
             flex-direction: column;
-            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
-            z-index: 10;
+            border-left: 1px solid #1e293b;
+            height: 100%;
         }
 
         .sidebar-header {
-            padding: 25px 20px;
-            background-color: #1a252f;
-            border-bottom: 1px solid #34495e;
+            padding: 30px 20px;
+            background-color: #020617;
+            border-bottom: 1px solid #1e293b;
         }
-        .sidebar-header h3 { margin: 0; font-size: 1.3rem; font-weight: 700; color: #ecf0f1; }
-        .sidebar-header p { margin: 5px 0 0 0; font-size: 0.85rem; color: #bdc3c7; }
+        .sidebar-header h3 { margin: 0; font-size: 1.25rem; font-weight: 700; color: #f1f5f9; }
+        .sidebar-header p { margin: 8px 0 0 0; font-size: 0.85rem; color: #94a3b8; }
 
         .menu-list {
             list-style: none;
@@ -59,100 +73,123 @@
         }
 
         .menu-item {
-            padding: 15px 20px;
-            border-bottom: 1px solid #34495e;
+            padding: 18px 20px;
+            border-bottom: 1px solid #1e293b;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.2s ease-in-out;
             font-size: 0.95rem;
-            color: #ecf0f1;
+            color: #cbd5e1;
+            border-right: 4px solid transparent;
         }
 
         .menu-item:hover, .menu-item.active {
-            background-color: #34495e;
-            border-right: 4px solid #3498db;
-            color: white;
+            background-color: var(--sidebar-hover);
+            border-right-color: #3b82f6;
+            color: #ffffff;
         }
 
-        /* منطقة المحتوى الرئيسية */
+        /* 🏛️ منطقة المحتوى الرئيسية */
         .main-content {
-            flex: 1;
             display: flex;
             flex-direction: column;
+            height: 100%;
             overflow-y: auto;
         }
 
         header {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
             color: white;
-            padding: 25px 40px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 30px 40px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            flex-shrink: 0;
         }
-        header h1 { margin: 0; font-size: 1.6rem; }
+        header h1 { margin: 0; font-size: 1.6rem; font-weight: 700; }
 
         .content-body {
             padding: 40px;
-            max-width: 1100px;
-            width: 100%;
-            box-sizing: border-box;
-            margin: 0 auto;
+            flex: 1;
         }
 
         .chapter-card {
-            background: white;
-            border-radius: 12px;
-            padding: 35px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
-            border: 1px solid #eef0f2;
+            background: var(--bg-card);
+            border-radius: 14px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+            border: 1px solid var(--border-color);
         }
 
-        /* الشاشة المنقسمة للغتين */
-        .split-view {
-            display: flex;
+        /* 🌍 تصميم الشبكة المتجاوب للنص المتوازي */
+        .split-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: 40px;
-            margin-bottom: 35px;
-        }
-        .side-arabic { flex: 1; text-align: justify; font-size: 1.1rem; color: var(--text-dark); line-height: 1.9; }
-        .side-english { 
-            flex: 1; text-align: left; direction: ltr; font-family: 'Inter', sans-serif; 
-            font-size: 1rem; color: var(--text-muted); border-left: 3px solid var(--primary-light); 
-            padding-left: 25px; text-align: justify; line-height: 1.7;
+            margin-bottom: 40px;
         }
 
-        /* قسم ربط المعمارية الحديثة */
+        .side-arabic { text-align: justify; font-size: 1.15rem; color: #1e293b; line-height: 1.9; }
+        
+        .side-english { 
+            text-align: left; direction: ltr; font-family: 'Inter', sans-serif; 
+            font-size: 1.05rem; color: var(--text-muted); border-left: 3px solid #dbeafe; 
+            padding-left: 30px; text-align: justify; line-height: 1.7;
+        }
+
+        /* 🎨 صندوق رسومات الكتاب الأصلية لمينسكي */
+        .original-drawing-box {
+            border: 1px solid var(--border-color);
+            background-color: #fafafa;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .original-drawing-box h4 { margin: 0 0 15px 0; color: var(--text-main); font-size: 1.1rem; }
+        .original-drawing-box img { max-width: 100%; height: auto; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+
+        /* 🚀 قسم ربط المعمارية الحديثة وعالم اليوم */
         .modern-mapping {
             background-color: var(--primary-light);
-            border-right: 6px solid #2a5298;
-            border-radius: 8px;
-            padding: 25px;
-            margin-top: 30px;
+            border-right: 6px solid var(--primary);
+            border-radius: 10px;
+            padding: 30px;
+            margin-top: 40px;
         }
-        .modern-mapping h3 { margin-top: 0; color: #1e3c72; font-size: 1.25rem; }
+        .modern-mapping h3 { margin-top: 0; color: var(--primary); font-size: 1.3rem; font-weight: 700; }
 
         .code-block {
             background-color: var(--code-bg);
-            color: #d4d4d4;
-            padding: 20px;
-            border-radius: 6px;
+            color: #e2e8f0;
+            padding: 22px;
+            border-radius: 8px;
             font-family: 'Fira Code', monospace;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             direction: ltr;
             text-align: left;
             overflow-x: auto;
-            margin: 20px 0;
+            margin: 25px 0;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.3);
         }
 
-        .diagram-container {
-            background: white;
-            padding: 20px;
+        .diagram-box {
+            background: var(--bg-card);
+            padding: 25px;
             border-radius: 8px;
-            border: 1px dashed #cbd5e1;
-            margin-top: 20px;
+            border: 1px solid var(--border-color);
+            margin-top: 25px;
             display: flex;
             justify-content: center;
+            overflow-x: auto;
         }
 
-        /* شاشة الانتظار */
-        .loading { text-align: center; font-size: 1.2rem; color: var(--text-muted); padding: 50px; }
+        .loading { text-align: center; font-size: 1.2rem; color: var(--text-muted); padding: 60px; }
+
+        /* 📱 قوالب ميديا كويري لضمان الـ Responsive الكامل للموبايل والشاشات الصغيرة */
+        @media (max-width: 1024px) {
+            body { grid-template-columns: 1fr; } /* إلغاء الجانبين وجعل الشاشة فوق بعضها */
+            .sidebar { height: auto; max-height: 300px; }
+            .split-grid { grid-template-columns: 1fr; gap: 25px; }
+            .side-english { border-left: none; border-top: 2px solid #dbeafe; padding-left: 0; padding-top: 25px; }
+        }
     </style>
 </head>
 <body>
@@ -160,52 +197,45 @@
     <div class="sidebar">
         <div class="sidebar-header">
             <h3>مجتمع العقل المعماري</h3>
-            <p>بصيرة فلسفية بأدوات رقمية معاصرة</p>
+            <p>لوحة التحكم المعرفية | مهند عثمان</p>
         </div>
-        <ul class="menu-list" id="menuList">
-            </ul>
+        <ul class="menu-list" id="menuList"></ul>
     </div>
 
     <div class="main-content">
         <header>
-            <h1 id="chapterTitle">تحميل لوحة التحكم المعمارية...</h1>
+            <h1 id="chapterTitle">جاري تحميل المعمارية المعرفية...</h1>
         </header>
         
         <div class="content-body" id="contentBody">
-            <div class="loading">جاري جلب البيانات المعرفية من ملف الـ JSON...</div>
+            <div class="loading">جاري جلب الفصول والرسومات...</div>
         </div>
     </div>
 
     <script>
         let chaptersData = [];
 
-        // 1. جلب البيانات من ملف الـ JSON (Fetch API)
         async function loadChapters() {
             try {
                 const response = await fetch('chapters.json');
                 chaptersData = await response.json();
-                
                 buildMenu();
-                // عرض أول فصل بشكل افتراضي عند فتح الصفحة
                 if(chaptersData.length > 0) {
                     renderChapter(chaptersData[0].id);
                 }
             } catch (error) {
-                document.getElementById('contentBody').innerHTML = `<div class='loading' style='color:red;'>⚠️ فشل جلب ملف chapters.json. تأكد من وجود الملف بجانب صفحة HTML وتشغيل سيرفر محلي.</div>`;
+                document.getElementById('contentBody').innerHTML = `<div class='loading' style='color:red;'>⚠️ فشل سحب البيانات. يرجى تشغيل السيرفر المحلي (Live Server) أو الرفع على خوادم GitHub مباشرة.</div>`;
             }
         }
 
-        // 2. بناء قائمة الفصول في الشريط الجانبي
         function buildMenu() {
             const menuList = document.getElementById('menuList');
             menuList.innerHTML = '';
-            
             chaptersData.forEach((chapter, index) => {
                 const li = document.createElement('li');
                 li.className = `menu-item ${index === 0 ? 'active' : ''}`;
-                li.innerText = chapter.title.split(':')[0] + ":" + chapter.title.split(':')[1].split('(')[0]; // تبسيط العنوان بالشريط الجانبي
+                li.innerText = chapter.title.split(':')[0] + ":" + chapter.title.split(':')[1].split('(')[0];
                 li.onclick = () => {
-                    // تغيير الكلاس النشط
                     document.querySelectorAll('.menu-item').forEach(el => el.classList.remove('active'));
                     li.classList.add('active');
                     renderChapter(chapter.id);
@@ -214,22 +244,29 @@
             });
         }
 
-        // 3. رندر وعرض بيانات الفصل المحدد ديناميكياً
-        function renderChapter(chapterId) {
+        // دالة الرندر المحدثة لحل مشكلة المخططات والصور الأصلية
+        async function renderChapter(chapterId) {
             const chapter = chaptersData.find(c => c.id === chapterId);
             if(!chapter) return;
 
-            // تحديث عنوان الهيدر الرئيسي
             document.getElementById('chapterTitle').innerText = chapter.title;
 
-            // بناء كارت المحتوى الشامل
             const contentBody = document.getElementById('contentBody');
+            
+            // حقن الـ HTML الأساسي
             contentBody.innerHTML = `
                 <div class="chapter-card">
-                    <div class="split-view">
+                    <div class="split-grid">
                         <div class="side-arabic"><p>${chapter.arabic_text}</p></div>
                         <div class="side-english"><p>${chapter.english_text}</p></div>
                     </div>
+                    
+                    ${chapter.original_drawing_url ? `
+                    <div class="original-drawing-box">
+                        <h4>🖼️ الرسم التوضيحي الأصلي من كتاب مارفن مينسكي:</h4>
+                        <img src="${chapter.original_drawing_url}" alt="رسمة مينسكي الأصلية" onerror="this.parentNode.style.display='none';">
+                    </div>
+                    ` : ''}
                     
                     <div class="modern-mapping">
                         <h3>${chapter.modern_title}</h3>
@@ -237,9 +274,9 @@
                         
                         <pre class="code-block"><code>${escapeHtml(chapter.code_snippet)}</code></pre>
                         
-                        <p><strong>المخطط المعماري البصري للفصل:</strong></p>
-                        <div class="diagram-container">
-                            <div class="mermaid" id="mermaid-${chapter.id}">
+                        <p><strong>المخطط الهندسي التفاعلي لنظام اليوم (Dynamic Architecture Diagram):</strong></p>
+                        <div class="diagram-box">
+                            <div class="mermaid" id="graph-${chapter.id}">
                                 ${chapter.mermaid_graph}
                             </div>
                         </div>
@@ -247,20 +284,23 @@
                 </div>
             `;
 
-            // إعادة تشغيل مكتبة Mermaid لرسم المخطط الجديد ديناميكياً
+            // 🔥 كسر الجمود وتفعيل محرك الرسم يدوياً بعد حقن العناصر في الصفحة
             try {
-                mermaid.contentLoaded();
+                const element = document.getElementById(`graph-${chapter.id}`);
+                if (element) {
+                    await mermaid.run({
+                        nodes: [element],
+                    });
+                }
             } catch(e) {
-                console.error("Mermaid failed to render", e);
+                console.error("عطل في معالجة مخطط الـ Mermaid", e);
             }
         }
 
-        // دالة مساعدة لمنع اختلاط كود السي شارب بالـ HTML
         function escapeHtml(text) {
             return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
         }
 
-        // تشغيل التطبيق عند تحميل الصفحة
         window.onload = loadChapters;
     </script>
 </body>
