@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مشروع كتاب: مجتمع العقل لمارفن مينسكي وتطبيقاته المعمارية الحديثة</title>
+    
+    <!-- استدعاء خطوط مريحة للقراءة ومتناسقة -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Fira+Code:wght@400;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- مكتبة لتدوير ورسم المخططات الهندسية برمجياً دون الحاجة لصور -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({ startOnLoad: true, theme: 'neutral' });</script>
+
+    <style>
+        :root {
+            --primary: #2b5c8f;
+            --primary-light: #eef4fa;
+            --accent: #2ecc71;
+            --text-dark: #2c3e50;
+            --text-muted: #7f8c8d;
+            --bg-body: #f4f7f6;
+            --code-bg: #1e1e1e;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-dark);
+            margin: 0;
+            padding: 0;
+            line-height: 1.8;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        header h1 { margin: 0; font-size: 2.2rem; font-weight: 700; }
+        header p { margin: 10px 0 0 0; font-size: 1.1rem; opacity: 0.9; }
+
+        .container {
+            max-width: 1300px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        /* لوحة التحكم وتقسيم الشاشة */
+        .chapter-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+            padding: 35px;
+            margin-bottom: 40px;
+            border: 1px solid #eef0f2;
+        }
+
+        .chapter-header {
+            border-bottom: 2px solid var(--primary-light);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+
+        .chapter-header h2 { color: var(--primary); margin: 0; font-size: 1.8rem; }
+
+        /* الشاشة المنقسمة متوازية العرض */
+        .split-view {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 35px;
+        }
+
+        .side-arabic {
+            flex: 1;
+            text-align: justify;
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            padding-left: 10px;
+        }
+
+        .side-english {
+            flex: 1;
+            text-align: left;
+            direction: ltr;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            color: var(--text-muted);
+            border-left: 3px solid var(--primary-light);
+            padding-left: 25px;
+            text-align: justify;
+        }
+
+        /* قسم ربط المعمارية الحديثة وعالم اليوم */
+        .modern-mapping {
+            background-color: var(--primary-light);
+            border-right: 6px solid var(--primary);
+            border-radius: 8px;
+            padding: 25px;
+            margin-top: 30px;
+        }
+
+        .modern-mapping h3 {
+            margin-top: 0;
+            color: var(--primary);
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* كتل كود السي شارب النظيفة */
+        .code-block {
+            background-color: var(--code-bg);
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 6px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.95rem;
+            direction: ltr;
+            text-align: left;
+            overflow-x: auto;
+            margin: 20px 0;
+            box-shadow: inset 0 2px 8px rgba(0,0,0,0.5);
+        }
+
+        /* حاوية المخططات الهندسية */
+        .diagram-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px dashed #cbd5e1;
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* تحسينات الشاشات الصغيرة (الموبايل) ليصبح العرض فوق بعضه تلقائياً */
+        @media (max-width: 768px) {
+            .split-view { flex-direction: column; gap: 20px; }
+            .side-english { border-left: none; border-top: 2px solid var(--primary-light); padding-left: 0; padding-top: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>مشروع ترجمة ومطابقة: مجتمع العقل (Society of Mind)</h1>
+    <p>تأليف: مارفن مينسكي | إسقاط هندسي برمجى معاصر بقلم: مهند عثمان</p>
+</header>
+
+<div class="container">
+
+    <!-- نموذج لفصل مطبق بالكامل (مثال: الفصل 24 - أطر اللغة والبيانات) -->
+    <div class="chapter-card">
+        <div class="chapter-header">
+            <h2>الفصل 24: أطر اللغة والبيانات (Language Frames)</h2>
+        </div>
+
+        <!-- النص المتوازي -->
+        <div class="split-view">
+            <!-- الجانب العربي -->
+            <div class="side-arabic">
+                <p>يرى مينسكي أن العقل البشري لا يتعامل مع الكلمات المفردة بشكل معزول، بل يملك <strong>"أطراً سياقية مسبقة الصنع" (Language Frames)</strong> تحتوي على خانات فارغة (Slots). عندما يستمع الإنسان إلى جملة، يقوم العقل بحقن الكلمات داخل هذه الخانات تلقائياً ليفهم المعنى الفوري للمشهد. وإذا غابت بعض التفاصيل، فإن النظام يملأ الخانات بـ <strong>"قيم افتراضية" (Default Values)</strong> بناءً على الحس السليم والخلفية المعرفية المخزنة لديه مسبقاً.</p>
+            </div>
+            
+            <!-- الجانب الإنجليزي -->
+            <div class="side-english">
+                <p>Minsky argues that the human mind does not process words in isolation; rather, it utilizes pre-constructed <strong>"Language Frames"</strong> equipped with empty slots. When we hear a sentence, the mind automatically injects these words into their corresponding slots to instantly build semantic meaning. If certain details are omitted, the system seamlessly populates the missing slots with <strong>"Default Values"</strong> based on commonsense and prior knowledge.</p>
+            </div>
+        </div>
+
+        <!-- قسم التوأمة مع عالم اليوم ومعمارية البرمجيات -->
+        <div class="modern-mapping">
+            <h3>💡 إسقاط على معمارية البرمجيات الحديثة والعالم الرقمي</h3>
+            <p>هذا المفهوم المعرفي هو الشقيق التوأم لكيفية تصميم <strong>واجهات التطبيقات (APIs)</strong> ونقل البيانات باستخدام الـ <strong>Data Transfer Objects (DTOs)</strong> مع تفعيل طبقة الـ <strong>Validation</strong> (المنقي اللغوي المعماري):</p>
+            
+            <ul>
+                <li><strong>الخانات الفارغة (Slots):</strong> تمثل الـ Parameters أو الخصائص (Properties) المتوقعة داخل طلب الـ API.</li>
+                <li><strong>القيم الافتراضية (Default Values):</strong> تمثل الإعدادات الافتراضية التي يضعها المبرمج في الكود لضمان استمرار عمل النظام بأمان في حال لم يرسل المستخدم كافة التفاصيل.</li>
+            </ul>
+
+            <!-- نموذج كود C# النظيف لتأصيل الفكرة برمجياً -->
+            <div class="code-block">
+// التطبيق العملي لفكرة الأطر والخانات الافتراضية في ASP.NET Core
+public class IrrigationRequestDTO 
+{
+    public string ZoneId { get; set; }        // خانة إجبارية (Required Slot)
+    public double WaterVolume { get; set; } = 50.0; // قيمة افتراضية في حال غياب المدخلات (Default Value)
+}
+            </div>
+
+            <p><strong>رسم بياني يوضح تدفق البيانات ومطابقتها اللغوية والبرمجية:</strong></p>
+            <!-- المخطط البرمجي المولّد تلقائياً بواسطة Mermaid -->
+            <div class="diagram-container">
+                <div class="mermaid">
+                    graph LR
+                        A[تطبيق المستخدم / المتحدث] -->|إرسال الـ DTO أو الكلمة| B[Gatekeeper / Validation المنقي]
+                        B -->|بيانات سليمة ومكتملة| C[إصدار الـ API الصحيح V2]
+                        B -->|بيانات ناقصة| D[تفعيل القيم الافتراضية Default Config]
+                        D --> C
+                        C --> E[طبقة الـ Core Domain المعالجة]
+                        
+                        style B fill:#e74c3c,color:#fff
+                        style D fill:#f39c12,color:#fff
+                        style C fill:#2ecc71,color:#fff
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
