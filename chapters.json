@@ -1,0 +1,22 @@
+[
+  {
+    "id": "chapter-18",
+    "title": "الفصل 18: الأشكال والمساحات (Shapes and Spaces)",
+    "arabic_text": "يستطيع العقل البشري تجريد الفراغات المعقدة إلى أشكال هندسية بسيطة ليفهم الأبعاد والحدود والمسافات الفراغية بسرعة وسهولة. هذا التجريد يحمي المعالج العقلي من الغرق في التفاصيل الفيزيائية الدقيقة لكل عنصر محيط به.",
+    "english_text": "The human mind can abstract complex spaces into simple geometric shapes to understand dimensions, boundaries, and spatial distances quickly and easily. This abstraction protects the mental processor from drowning in the precise physical details of every surrounding element.",
+    "modern_title": "💡 إسقاط على معمارية البرمجيات الحديثة (Architecture Styles)",
+    "modern_insight": "هذا المفهوم هو الأساس لتوزيع الخدمات في الـ Microservices؛ حيث نجرّد السيستم إلى كتل معزولة (Bounded Contexts) ونحدد المسافات الآمنة والروابط بينها لتقليل نصف القطر التفجيري (Blast Radius) عند حدوث الأعطال.",
+    "code_snippet": "// تجريد الأصول والحدود بمرونة في الـ .NET Core\npublic interface ISpatialAsset {\n    string ZoneId { get; }\n    void ExecuteFlow();\n}",
+    "mermaid_graph": "graph TD\n    A[الموقع العام / System] --> B[حقل الزيتون / Service A]\n    A --> C[حقل الرمان / Service B]\n    B -->|شبكة ري معزولة| D[مستشعرات الرطوبة]\n    style B fill:#3498db,color:#fff\n    style C fill:#2ecc71,color:#fff"
+  },
+  {
+    "id": "chapter-24",
+    "title": "الفصل 24: أطر اللغة والبيانات (Language Frames)",
+    "arabic_text": "يرى مينسكي أن العقل البشري يملك أطراً سياقية مسبقة الصنع تحتوي على خانات فارغة (Slots). عندما يستمع الإنسان إلى جملة، يقوم العقل بحقن الكلمات داخل هذه الخانات تلقائياً ليفهم المعنى الفوري للمشهد، ويملأ النقص بقيم افتراضية (Default Values).",
+    "english_text": "Minsky argues that the human mind utilizes pre-constructed Language Frames equipped with empty slots. When we hear a sentence, the mind automatically injects these words into their corresponding slots to instantly build semantic meaning, populating gaps with Default Values.",
+    "modern_title": "💡 إسقاط على واجهات التطبيقات (APIs & DTOs)",
+    "modern_insight": "هذا هو الشقيق التوأم للـ Data Transfer Objects (DTOs) في الـ Web API؛ حيث تمثل الخانات الفارغة خصائص الكائن (Properties)، ونستخدم الـ Validation كمنقٍ لغوي، مع وضع Default Configurations لحماية السيرفر.",
+    "code_snippet": "public class IrrigationRequestDTO {\n    public string ZoneId { get; set; } // Required Slot\n    public double WaterVolume { get; set; } = 50.0; // Default Value\n}",
+    "mermaid_graph": "graph LR\n    A[تطبيق الموبايل / DTO] -->|فحص البيانات| B[Validation / المنقي]\n    B -->|سليمة| C[إصدار الـ API V2]\n    B -->|ناقصة| D[تفعيل الـ Default Values]\n    D --> C\n    style B fill:#e74c3c,color:#fff\n    style C fill:#2ecc71,color:#fff"
+  }
+]
